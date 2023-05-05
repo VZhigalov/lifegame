@@ -58,13 +58,18 @@ def click(event):
     c.update()
     
 def click_button():
+    global clicked
+    n_clicked = set()
+    for i in clicked:
+        n_clicked.add(i)        
     for item in range(1, GRID_SIZE**2 + 1):
         if item not in clicked and check_blacks(generate_neighbors(item)) == 3:#Белая клетка с тремя черными соседями
             c.itemconfig(item, fill= "black")
-            clicked.add(item)
+            n_clicked.add(item)
         elif item in clicked and check_blacks(generate_neighbors(item)) not in [2, 3]:#Черная клетка с ненужным числом черных соседей
             c.itemconfig(item, fill = "white")
-            clicked.remove(item)
+            n_clicked.remove(item)
+    clicked = n_clicked
     c.update()
 
 root = Tk() # Основное окно программы
