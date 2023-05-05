@@ -59,9 +59,7 @@ def click(event):
     
 def click_button():
     global clicked
-    n_clicked = set()
-    for i in clicked:
-        n_clicked.add(i)        
+    n_clicked = clicked.copy()    
     for item in range(1, GRID_SIZE**2 + 1):
         if item not in clicked and check_blacks(generate_neighbors(item)) == 3:#Белая клетка с тремя черными соседями
             c.itemconfig(item, fill= "black")
